@@ -8,6 +8,16 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        "purple": "var(--purple)",
+        "purple-hover": "var(--purple-hover)",
+        "purple-light": "var(--purple-light)",
+        "grey": "var(--grey)",
+        "grey-dark": "var(--grey-dark)",
+        "grey-light": "var(--grey-light)",
+        "borders": "var(--borders)",
+        "red": "var(--red)",
+      }
     },
   },
   plugins: [],
