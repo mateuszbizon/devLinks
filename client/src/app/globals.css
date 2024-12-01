@@ -12,3 +12,21 @@
     --borders: #D9D9D9;
     --red: #FF3939;
 }
+
+@layer components {
+    .heading-m {
+        @apply text-[2rem] font-bold
+    }
+
+    .heading-s {
+        @apply text-base font-bold
+    }
+
+    .body-m {
+        @apply text-base font-normal
+    }
+
+    .body-s {
+        @apply text-xs font-normal
+    }
+}
