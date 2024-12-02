@@ -7,8 +7,14 @@ import ProfileIcon from '../icons/ProfileIcon'
 import PreviewIcon from '../icons/PreviewIcon'
 import LogoSmallIcon from '../icons/LogoSmallIcon'
 import LogoLargeIcon from '../icons/LogoLargeIcon'
+import { PROFILE_DETAILS_VIEW, PROFILE_LINKS_VIEW } from '@/constants'
 
-function ProfileNav() {
+type ProfileNavProps = {
+    profileView: string;
+    setProfileView: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function ProfileNav({ profileView, setProfileView }: ProfileNavProps) {
   return (
     <nav>
         <NavContainer>
@@ -22,11 +28,17 @@ function ProfileNav() {
                     </div>
                 </div>
                 <div className='flex gap-4'>
-                    <Button variant={"tab-active"}>
+                    <Button 
+                        variant={profileView === PROFILE_LINKS_VIEW ? "tab-active" : "tab"} 
+                        onClick={() => setProfileView(PROFILE_LINKS_VIEW)}
+                    >
                         <LinkIcon />
                         <span className='hidden md:block'>Links</span>
                     </Button>
-                    <Button variant={"tab"}>
+                    <Button 
+                        variant={profileView === PROFILE_DETAILS_VIEW ? "tab-active" : "tab"} 
+                        onClick={() => setProfileView(PROFILE_DETAILS_VIEW)}
+                    >
                         <ProfileIcon />
                         <span className='hidden md:block'>Profile Details</span>
                     </Button>
