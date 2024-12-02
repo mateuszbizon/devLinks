@@ -2,6 +2,11 @@ import React from 'react'
 import NavContainer from '../containers/NavContainer'
 import { Button, buttonVariants } from '../ui/button'
 import Link from 'next/link'
+import LinkIcon from '../icons/LinkIcon'
+import ProfileIcon from '../icons/ProfileIcon'
+import PreviewIcon from '../icons/PreviewIcon'
+import LogoSmallIcon from '../icons/LogoSmallIcon'
+import LogoLargeIcon from '../icons/LogoLargeIcon'
 
 function ProfileNav() {
   return (
@@ -9,19 +14,29 @@ function ProfileNav() {
         <NavContainer>
             <div className='bg-white flex justify-between items-center px-6 py-4'>
                 <div>
-                    <span>Dev</span>
+                    <div className='md:hidden'>
+                        <LogoSmallIcon />
+                    </div>
+                    <div className='hidden md:block'>
+                        <LogoLargeIcon />
+                    </div>
                 </div>
                 <div className='flex gap-4'>
                     <Button variant={"tab-active"}>
-                        A
+                        <LinkIcon />
+                        <span className='hidden md:block'>Links</span>
                     </Button>
                     <Button variant={"tab"}>
-                        B
+                        <ProfileIcon />
+                        <span className='hidden md:block'>Profile Details</span>
                     </Button>
                 </div>
                 <div>
                     <Link href={"/preview"} className={buttonVariants({ variant: "secondary" })}>
-                        C
+                        <div className='md:hidden'>
+                            <PreviewIcon />
+                        </div>
+                        <span className='hidden md:block'>Preview</span>
                     </Link>
                 </div>
             </div>
