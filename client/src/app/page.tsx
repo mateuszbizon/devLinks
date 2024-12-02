@@ -1,5 +1,9 @@
+import ProfileNav from "@/components/navs/ProfileNav";
+
 export default function Home() {
-  return (
-    <h1>Home page</h1>
+  return (   
+    <div>
+      <ProfileNav />
+    </div>
   );
 }
