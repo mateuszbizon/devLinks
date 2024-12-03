@@ -16,9 +16,12 @@ export const profileLinksSlice = createSlice({
     reducers: {
         addLink: (state) => {
             state.profileLinks = [...state.profileLinks, { id: generateRandomId(), platform: "github", link: "" }]
+        },
+        deleteLink: (state, action: PayloadAction<string>) => {
+            state.profileLinks = state.profileLinks.filter(link => link.id !== action.payload)
         }
     }
 })
 
-export const { addLink } = profileLinksSlice.actions
+export const { addLink, deleteLink } = profileLinksSlice.actions
 export default profileLinksSlice.reducer
