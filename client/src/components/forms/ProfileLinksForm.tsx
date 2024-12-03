@@ -17,13 +17,13 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
             <ProfileLinksList
                 profileLinks={profileLinks}
                 renderItem={(link) => (
-                    <ProfileLinkCard key={link.link} profileLink={link} />
+                    <ProfileLinkCard key={link.id} profileLink={link} />
                 )}
             />
         </div>
         <div className='w-full h-[1px] bg-borders'></div>
         <div className='flex justify-end p-6'>
-            <Button disabled className='w-full md:w-auto'>
+            <Button className='w-full md:w-auto' disabled={!profileLinks.length}>
                 Save
             </Button>
         </div>

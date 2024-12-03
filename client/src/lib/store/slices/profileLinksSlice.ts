@@ -1,5 +1,6 @@
+import { generateRandomId } from "@/lib/utils/generateRandomId";
 import { ProfileLink } from "@/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type ProfileLinksState = {
     profileLinks: ProfileLink[]
@@ -13,8 +14,11 @@ export const profileLinksSlice = createSlice({
     name: "profile_links",
     initialState,
     reducers: {
-
+        addLink: (state) => {
+            state.profileLinks = [...state.profileLinks, { id: generateRandomId(), platform: "github", link: "" }]
+        }
     }
 })
 
+export const { addLink } = profileLinksSlice.actions
 export default profileLinksSlice.reducer
