@@ -23,17 +23,7 @@ function ProfileViews({ profileView }: ProfileViewsProps) {
                     <ProfileResult />
                 </div>
                 <div className='lg:col-end-4 lg:col-span-2 bg-white rounded-md'>
-                    <form>
-                        <div className='p-6'>
-                            {profileViews[profileView] || null}
-                        </div>
-                        <div className='w-full h-[1px] bg-borders'></div>
-                        <div className='flex justify-end p-6'>
-                            <Button disabled className='w-full md:w-auto'>
-                                Save
-                            </Button>
-                        </div>
-                    </form>
+                    {profileViews[profileView] || null}
                 </div>
             </div>
         </MainContainer>
