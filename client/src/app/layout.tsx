@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Instrument_Sans } from "next/font/google"
+import Providers from "@/components/Providers";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body
         className={`${instrumentSans.className}`}
       >
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
