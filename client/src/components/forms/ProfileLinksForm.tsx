@@ -16,8 +16,8 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
         <div className='p-6 pt-0'>
             <ProfileLinksList
                 profileLinks={profileLinks}
-                renderItem={(link) => (
-                    <ProfileLinkCard key={link.id} profileLink={link} />
+                renderItem={(link, index) => (
+                    <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index} />
                 )}
             />
         </div>
