@@ -1,20 +1,35 @@
 "use client"
 
 import { ProfileLink } from '@/types'
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import DragDropIcon from '../icons/DragDropIcon'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@/lib/store'
-import { deleteLink } from '@/lib/store/slices/profileLinksSlice'
+import { deleteLink, updateLink } from '@/lib/store/slices/profileLinksSlice'
+import { Label } from '../ui/label'
+import { Input } from '../ui/input'
+import LinkInputIcon from '../icons/LinkInputIcon'
+import { FieldErrors } from 'react-hook-form'
+import { ProfileLinksSchema } from '@/validations/profileLinksSchema'
 
 type ProfileLinkCardProps = PropsWithChildren & {
     profileLink: ProfileLink
     linkIndex: number
+    errors: FieldErrors<ProfileLinksSchema>
 }
 
-function ProfileLinkCard({ profileLink, linkIndex, children }: ProfileLinkCardProps) {
+function ProfileLinkCard({ profileLink, linkIndex, errors }: ProfileLinkCardProps) {
+    const [currentLink, setCurrentLink] = useState(profileLink)
     const dispatch = useDispatch<AppDispatch>()
+
+    function handleChangeInput(value: string) {
+        setCurrentLink({ ...currentLink, link: value })
+    }
+    
+    useEffect(() => {
+        dispatch(updateLink(currentLink))
+    }, [currentLink])
 
   return (
     <div className='p-5 bg-grey-light rounded-md space-y-2'>
@@ -28,7 +43,10 @@ function ProfileLinkCard({ profileLink, linkIndex, children }: ProfileLinkCardPr
             </Button>
         </div>
         <div className='space-y-2'>
-            {children}
+        <div>
+            <Label htmlFor='link'>Link</Label>
+            <Input id='link' type='text' placeholder='e.g. https://www.github.com/johnappleseed' icon={<LinkInputIcon />} onChange={(e) => handleChangeInput(e.target.value)} error={errors.profileLinks && errors.profileLinks[linkIndex]?.link?.message} />
+        </div>
         </div>
     </div>
   )

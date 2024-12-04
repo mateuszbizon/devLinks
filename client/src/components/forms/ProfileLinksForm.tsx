@@ -1,31 +1,38 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
 import ProfileLinksList from '../lists/ProfileLinksList'
 import { ProfileLink } from '@/types'
 import ProfileLinkCard from '../cards/ProfileLinkCard'
-import { Input } from '../ui/input'
-import LinkInputIcon from '../icons/LinkInputIcon'
-import { Label } from '../ui/label'
+import { useForm } from 'react-hook-form'
+import { profileLinksSchema, ProfileLinksSchema } from '@/validations/profileLinksSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 type ProfileLinksFormProps = {
     profileLinks: ProfileLink[]
 }
 
 function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
+    const { handleSubmit, setValue, formState: { errors } } = useForm<ProfileLinksSchema>({
+        resolver: zodResolver(profileLinksSchema),
+    })
+
+    function onSubmit(data: ProfileLinksSchema) {
+        console.log("Sent data!")
+    }
+
+    useEffect(() => {
+        setValue("profileLinks", profileLinks)
+    }, [profileLinks])
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
         <div className='p-6 pt-0'>
             <ProfileLinksList
                 profileLinks={profileLinks}
                 renderItem={(link, index) => (
-                    <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index}>
-                        <div>
-                            <Label htmlFor='link'>Link</Label>
-                            <Input id='link' type='text' placeholder='e.g. https://www.github.com/johnappleseed' icon={<LinkInputIcon />} />
-                        </div>
-                    </ProfileLinkCard>
+                    <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index} errors={errors} />
                 )}
             />
         </div>

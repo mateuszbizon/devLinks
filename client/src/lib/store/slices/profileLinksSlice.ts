@@ -19,9 +19,18 @@ export const profileLinksSlice = createSlice({
         },
         deleteLink: (state, action: PayloadAction<string>) => {
             state.profileLinks = state.profileLinks.filter(link => link.id !== action.payload)
+        },
+        updateLink: (state, action: PayloadAction<ProfileLink>) => {
+            state.profileLinks = state.profileLinks.map(link => {
+                if (link.id === action.payload.id) {
+                    return action.payload
+                }
+
+                return link
+            })
         }
     }
 })
 
-export const { addLink, deleteLink } = profileLinksSlice.actions
+export const { addLink, deleteLink, updateLink } = profileLinksSlice.actions
 export default profileLinksSlice.reducer
