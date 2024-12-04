@@ -5,6 +5,9 @@ import { Button } from '../ui/button'
 import ProfileLinksList from '../lists/ProfileLinksList'
 import { ProfileLink } from '@/types'
 import ProfileLinkCard from '../cards/ProfileLinkCard'
+import { Input } from '../ui/input'
+import LinkInputIcon from '../icons/LinkInputIcon'
+import { Label } from '../ui/label'
 
 type ProfileLinksFormProps = {
     profileLinks: ProfileLink[]
@@ -17,7 +20,12 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
             <ProfileLinksList
                 profileLinks={profileLinks}
                 renderItem={(link, index) => (
-                    <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index} />
+                    <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index}>
+                        <div>
+                            <Label htmlFor='link'>Link</Label>
+                            <Input id='link' type='text' placeholder='e.g. https://www.github.com/johnappleseed' icon={<LinkInputIcon />} />
+                        </div>
+                    </ProfileLinkCard>
                 )}
             />
         </div>

@@ -1,19 +1,19 @@
 "use client"
 
 import { ProfileLink } from '@/types'
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { Button } from '../ui/button'
 import DragDropIcon from '../icons/DragDropIcon'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@/lib/store'
 import { deleteLink } from '@/lib/store/slices/profileLinksSlice'
 
-type ProfileLinkCardProps = {
+type ProfileLinkCardProps = PropsWithChildren & {
     profileLink: ProfileLink
     linkIndex: number
 }
 
-function ProfileLinkCard({ profileLink, linkIndex }: ProfileLinkCardProps) {
+function ProfileLinkCard({ profileLink, linkIndex, children }: ProfileLinkCardProps) {
     const dispatch = useDispatch<AppDispatch>()
 
   return (
@@ -26,6 +26,9 @@ function ProfileLinkCard({ profileLink, linkIndex }: ProfileLinkCardProps) {
             <Button variant={"tab"} className='p-0 body-m' onClick={() => dispatch(deleteLink(profileLink.id))}>
                 Remove
             </Button>
+        </div>
+        <div className='space-y-2'>
+            {children}
         </div>
     </div>
   )
