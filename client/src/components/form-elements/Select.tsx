@@ -2,6 +2,7 @@
 
 import React, { createContext, PropsWithChildren, useContext, useState } from 'react'
 import ArrowDownIcon from '../icons/ArrowDownIcon'
+import { getPlatformItem } from '@/lib/utils/getPlatformItem'
 
 type SelectContext = {
     selectedValue: string
@@ -37,8 +38,8 @@ function Select({ value, onChangeValue, children }: SelectProps) {
     <SelectContext.Provider value={{ selectedValue: value, onChangeValue, closeSelect }}>
         <div className='relative'>
             <div className='flex justify-between items-center bg-white rounded-md border border-borders p-4 focus-visible:border-purple cursor-pointer' onClick={() => setSelectOpen(prev => !prev)}>
-                <span className='body-m text-grey-dark'>
-                    {value}
+                <span className='flex gap-2 items-center body-m text-grey-dark'>
+                    {getPlatformItem(value)?.icon} {value}
                 </span>
                 <div className={`${selectOpen ? "rotate-180" : "rotate-0"} transition-transform duration-200`}>
                     <ArrowDownIcon />
