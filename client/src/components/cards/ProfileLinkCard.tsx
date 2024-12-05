@@ -13,7 +13,7 @@ import LinkInputIcon from '../icons/LinkInputIcon'
 import { FieldErrors } from 'react-hook-form'
 import { ProfileLinksSchema } from '@/validations/profileLinksSchema'
 import Select from '../form-elements/Select'
-import LinkIcon from '../icons/LinkIcon'
+import { PLATFORMS_LIST } from '@/constants/platformsList'
 
 type ProfileLinkCardProps = PropsWithChildren & {
     profileLink: ProfileLink
@@ -52,12 +52,11 @@ function ProfileLinkCard({ profileLink, linkIndex, errors }: ProfileLinkCardProp
             <div>
                 <Label>Platform</Label>
                 <Select value={currentLink.platform} onChangeValue={handleChangeSelect}>
-                    <Select.Item value='github'>
-                        <LinkIcon /> Github
-                    </Select.Item>
-                    <Select.Item value='youtube'>
-                        <LinkIcon /> Youtube
-                    </Select.Item>
+                    {PLATFORMS_LIST.map((item) => (
+                        <Select.Item key={item.value} value={item.value}>
+                            {item.icon} {item.value}
+                        </Select.Item>
+                    ))}
                 </Select>
             </div>
             <div>
