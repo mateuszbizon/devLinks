@@ -12,6 +12,8 @@ import { Input } from '../ui/input'
 import LinkInputIcon from '../icons/LinkInputIcon'
 import { FieldErrors } from 'react-hook-form'
 import { ProfileLinksSchema } from '@/validations/profileLinksSchema'
+import Select from '../form-elements/Select'
+import LinkIcon from '../icons/LinkIcon'
 
 type ProfileLinkCardProps = PropsWithChildren & {
     profileLink: ProfileLink
@@ -25,6 +27,10 @@ function ProfileLinkCard({ profileLink, linkIndex, errors }: ProfileLinkCardProp
 
     function handleChangeInput(value: string) {
         setCurrentLink({ ...currentLink, link: value })
+    }
+
+    function handleChangeSelect(value: string) {
+        setCurrentLink({ ...currentLink, platform: value })
     }
     
     useEffect(() => {
@@ -43,10 +49,21 @@ function ProfileLinkCard({ profileLink, linkIndex, errors }: ProfileLinkCardProp
             </Button>
         </div>
         <div className='space-y-2'>
-        <div>
-            <Label htmlFor='link'>Link</Label>
-            <Input id='link' type='text' placeholder='e.g. https://www.github.com/johnappleseed' icon={<LinkInputIcon />} onChange={(e) => handleChangeInput(e.target.value)} error={errors.profileLinks && errors.profileLinks[linkIndex]?.link?.message} />
-        </div>
+            <div>
+                <Label>Platform</Label>
+                <Select value={currentLink.platform} onChangeValue={handleChangeSelect}>
+                    <Select.Item value='github'>
+                        <LinkIcon /> Github
+                    </Select.Item>
+                    <Select.Item value='youtube'>
+                        <LinkIcon /> Youtube
+                    </Select.Item>
+                </Select>
+            </div>
+            <div>
+                <Label htmlFor='link'>Link</Label>
+                <Input id='link' type='text' placeholder='e.g. https://www.github.com/johnappleseed' icon={<LinkInputIcon />} onChange={(e) => handleChangeInput(e.target.value)} error={errors.profileLinks && errors.profileLinks[linkIndex]?.link?.message} />
+            </div>
         </div>
     </div>
   )
