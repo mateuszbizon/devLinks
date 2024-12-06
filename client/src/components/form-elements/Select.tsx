@@ -1,8 +1,9 @@
 "use client"
 
-import React, { createContext, PropsWithChildren, useContext, useState } from 'react'
+import React, { createContext, PropsWithChildren, useContext, useRef, useState } from 'react'
 import ArrowDownIcon from '../icons/ArrowDownIcon'
 import { getPlatformItem } from '@/lib/utils/getPlatformItem'
+import useClickOutside from '@/lib/hooks/useClickOutside'
 
 type SelectContext = {
     selectedValue: string
@@ -29,14 +30,17 @@ type SelectProps = PropsWithChildren & {
 
 function Select({ value, onChangeValue, children }: SelectProps) {
     const [selectOpen, setSelectOpen] = useState(false)
+    const selectRef = useRef<HTMLDivElement | null>(null)
 
     function closeSelect() {
         setSelectOpen(false)
     }
 
+    useClickOutside(selectRef, selectOpen, closeSelect)
+
   return (
     <SelectContext.Provider value={{ selectedValue: value, onChangeValue, closeSelect }}>
-        <div className='relative'>
+        <div ref={selectRef} className='relative'>
             <div className='flex justify-between items-center bg-white rounded-md border border-borders p-4 focus-visible:border-purple cursor-pointer' onClick={() => setSelectOpen(prev => !prev)}>
                 <span className='flex gap-2 items-center body-m text-grey-dark'>
                     {getPlatformItem(value)?.icon} {value}
