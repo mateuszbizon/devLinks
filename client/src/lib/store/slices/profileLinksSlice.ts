@@ -1,14 +1,27 @@
 import { PLATFORMS_LIST } from "@/constants/platformsList";
 import { generateRandomId } from "@/lib/utils/generateRandomId";
-import { ProfileLink } from "@/types";
+import { ProfileDetailsFormValues, ProfileLink } from "@/types";
+import { ProfileDetailsSchema } from "@/validations/profileDetailsSchema";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type ProfileLinksState = {
     profileLinks: ProfileLink[]
+    profileDetails: {
+        name: string
+        surname: string
+        email: string
+        image: string | null
+    }
 }
 
 const initialState: ProfileLinksState = {
-    profileLinks: []
+    profileLinks: [],
+    profileDetails: {
+        name: "",
+        surname: "",
+        email: "",
+        image: null
+    }
 } 
 
 export const profileLinksSlice = createSlice({
@@ -29,9 +42,12 @@ export const profileLinksSlice = createSlice({
 
                 return link
             })
+        },
+        updateDetails: (state, action: PayloadAction<ProfileDetailsFormValues>) => {
+            state.profileDetails = action.payload
         }
     }
 })
 
-export const { addLink, deleteLink, updateLink } = profileLinksSlice.actions
+export const { addLink, deleteLink, updateLink, updateDetails } = profileLinksSlice.actions
 export default profileLinksSlice.reducer
