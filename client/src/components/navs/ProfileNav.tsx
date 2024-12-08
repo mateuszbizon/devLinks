@@ -27,7 +27,7 @@ function ProfileNav({ profileView, setProfileView }: ProfileNavProps) {
                         <LogoLargeIcon />
                     </div>
                 </div>
-                <div className='flex gap-4'>
+                <div className='flex'>
                     <Button 
                         variant={profileView === PROFILE_LINKS_VIEW ? "tab-active" : "tab"} 
                         onClick={() => setProfileView(PROFILE_LINKS_VIEW)}
