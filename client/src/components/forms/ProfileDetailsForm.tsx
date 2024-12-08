@@ -38,17 +38,17 @@ function ProfileDetailsForm() {
     }
 
     function onChangeName(e: React.ChangeEvent<HTMLInputElement>) {
-        setValue("name", e.target.value)
+        setValue("name", e.target.value, { shouldValidate: true })
         dispatch(updateDetails({ ...profileDetails, name: e.target.value }))
     }
 
     function onChangeSurname(e: React.ChangeEvent<HTMLInputElement>) {
-        setValue("surname", e.target.value)
+        setValue("surname", e.target.value, { shouldValidate: true })
         dispatch(updateDetails({ ...profileDetails, surname: e.target.value }))
     }
 
     function onChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
-        setValue("email", e.target.value)
+        setValue("email", e.target.value, { shouldValidate: true })
         dispatch(updateDetails({ ...profileDetails, email: e.target.value }))
     }
 
@@ -86,7 +86,7 @@ function ProfileDetailsForm() {
                         <Label htmlFor='name' className='md:body-m md:text-grey'>First name*</Label>
                     </div>
                     <div className='md:col-end-4 md:col-span-2'>
-                        <Input id='name' placeholder='e.g. John' value={profileDetails.name} onChange={onChangeName} />
+                        <Input id='name' placeholder='e.g. John' value={profileDetails.name} onChange={onChangeName} error={errors.name && errors.name.message} />
                     </div>
                 </div>
 
@@ -95,8 +95,7 @@ function ProfileDetailsForm() {
                         <Label htmlFor='surname' className='md:body-m md:text-grey'>Last name*</Label>
                     </div>
                     <div className='md:col-end-4 md:col-span-2'>
-                        <Input id='surname' placeholder='e.g. Appleseed' value={profileDetails.surname} onChange={onChangeSurname} />
-                        <span className='text-rose-600'>{errors.surname && errors.surname.message}</span>
+                        <Input id='surname' placeholder='e.g. Appleseed' value={profileDetails.surname} onChange={onChangeSurname} error={errors.surname && errors.surname.message} />
                     </div>
                 </div>
                 
@@ -105,8 +104,7 @@ function ProfileDetailsForm() {
                         <Label htmlFor='email' className='md:body-m md:text-grey'>Email</Label>
                     </div>
                     <div className='md:col-end-4 md:col-span-2'>
-                        <Input id='email' placeholder='e.g. email@exmaple.com' value={profileDetails.email} onChange={onChangeEmail} />
-                        <span className='text-rose-600'>{errors.email && errors.email.message}</span>
+                        <Input id='email' placeholder='e.g. email@exmaple.com' value={profileDetails.email} onChange={onChangeEmail} error={errors.email && errors.email.message} />
                     </div>
                 </div>
             </div>
