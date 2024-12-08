@@ -8,6 +8,7 @@ import ProfileLinkCard from '../cards/ProfileLinkCard'
 import { useForm } from 'react-hook-form'
 import { profileLinksSchema, ProfileLinksSchema } from '@/validations/profileLinksSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import ProfileLinksEmpty from '../messages/ProfileLinksEmpty'
 
 type ProfileLinksFormProps = {
     profileLinks: ProfileLink[]
@@ -35,6 +36,9 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
                     <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index} errors={errors} />
                 )}
             />
+            {!profileLinks.length && (
+                <ProfileLinksEmpty />
+            )}
         </div>
         <div className='w-full h-[1px] bg-borders'></div>
         <div className='flex justify-end p-6'>
