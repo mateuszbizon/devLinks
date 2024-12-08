@@ -60,8 +60,8 @@ function ProfileLinkCard({ profileLink, linkIndex, errors }: ProfileLinkCardProp
                 </Select>
             </div>
             <div>
-                <Label htmlFor='link'>Link</Label>
-                <Input id='link' type='text' placeholder='e.g. https://www.github.com/johnappleseed' icon={<LinkInputIcon />} onChange={(e) => handleChangeInput(e.target.value)} error={errors.profileLinks && errors.profileLinks[linkIndex]?.link?.message} />
+                <Label htmlFor={`link-${profileLink.id}`}>Link</Label>
+                <Input id={`link-${profileLink.id}`} type='text' placeholder='e.g. https://www.github.com/johnappleseed' icon={<LinkInputIcon />} onChange={(e) => handleChangeInput(e.target.value)} error={errors.profileLinks && errors.profileLinks[linkIndex]?.link?.message} />
             </div>
         </div>
     </div>
