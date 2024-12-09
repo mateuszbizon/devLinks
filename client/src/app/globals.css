@@ -18,21 +18,3 @@
         @apply bg-grey-light
     }
 }
-
-@layer components {
-    .heading-m {
-        @apply text-[2rem] font-bold
-    }
-
-    .heading-s {
-        @apply text-base font-bold
-    }
-
-    .body-m {
-        @apply text-base font-normal
-    }
-
-    .body-s {
-        @apply text-xs font-normal
-    }
-}

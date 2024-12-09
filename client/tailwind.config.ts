@@ -8,6 +8,20 @@ export default {
   ],
   theme: {
     extend: {
+      fontSize: {
+        '3xl': ['2rem', {
+          fontWeight: '700',
+        }],
+        'lg': ['1rem', {
+          fontWeight: '700',
+        }],
+        'base': ['1rem', {
+          fontWeight: '400',
+        }],
+        'xs': ['0.75rem', {
+          fontWeight: '400',
+        }],
+      },
       colors: {
         "purple": "var(--purple)",
         "purple-hover": "var(--purple-hover)",
@@ -17,7 +31,7 @@ export default {
         "grey-light": "var(--grey-light)",
         "borders": "var(--borders)",
         "red": "var(--red)",
-      }
+      },
     },
   },
   plugins: [],

@@ -15,7 +15,7 @@ function PreviewPage() {
     <div>
         <PreviewNav />
         <div className='absolute top-0 w-full bg-purple rounded-b-3xl h-[350px] -z-10 opacity-0 md:opacity-100'></div>
-        <div className='bg-white rounded-3xl md:px-14 md:py-12 md:mt-24 max-w-[237px] md:max-w-[349px] mx-auto'>
+        <div className='bg-white rounded-3xl md:px-14 md:py-12 mt-12 md:mt-24 max-w-[237px] md:max-w-[349px] mx-auto'>
             <ProfileSummary profileDetails={profileDetails}>
                 <ProfileSummary.Image src={profileDetails.image || ""} width={200} height={200} alt='' className='size-[104px]' />
                 <ProfileSummary.Box>

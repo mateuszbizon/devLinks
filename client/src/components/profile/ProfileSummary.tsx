@@ -57,13 +57,13 @@ function ProfileSummaryImage({ src, width, height, alt, className, ...props }: P
     )
 }
 
-type ProfileSummaryNameProps = React.AllHTMLAttributes<HTMLSpanElement>
+type ProfileSummaryNameProps = React.HTMLAttributes<HTMLSpanElement>
 
 function ProfileSummaryName({ className, ...props }: ProfileSummaryNameProps) {
     const context = useProfileSummaryContext()
 
     return (
-        <span className={cn('text-lg font-semibold text-grey-dark', className)} {...props}>
+        <span className={cn('text-[1.125rem] font-semibold text-grey-dark', className)} {...props}>
             {context.profileDetails.name} {context.profileDetails.surname}
         </span>
     )
