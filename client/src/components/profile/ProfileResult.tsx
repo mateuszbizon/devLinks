@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import ProfileLinksList from '../lists/ProfileLinksList'
 import PlatformCard from '../cards/PlatformCard'
+import ProfileSummary from './ProfileSummary'
 
 function ProfileResult() {
   const { profileLinks, profileDetails } = useSelector((state: RootState) => state.profileLinks)
@@ -24,45 +25,43 @@ function ProfileResult() {
   return (
     <div className='flex justify-center p-6 rounded-md bg-white'>
       <div className='w-[308px] min-h-[632px] border border-grey rounded-3xl p-3'>
-        <div className='flex flex-col items-center size-full border border-grey rounded-2xl p-5'>
-          <div className='size-[96px]'>
-            {profileDetails.image ? (
-              <Image src={profileDetails.image} alt='' width={200} height={200} className='size-full object-cover rounded-full border-4 border-purple' />
-            ) : (
-              <div className='size-full rounded-full bg-borders'></div>
-            )}
-          </div>
+        <div className='size-full border border-grey rounded-2xl p-5'>
+          <ProfileSummary profileDetails={profileDetails}>
+              {profileDetails.image ? (
+                <ProfileSummary.Image src={profileDetails.image} width={200} height={200} alt='' />
+              ) : (
+                <div className='size-[96px] rounded-full bg-borders'></div>
+              )}
 
-          <div className='mt-7 mb-2'>
-            {!profileDetails.name || !profileDetails.surname ? (
-              <div className='w-40 h-4 rounded-[104px] bg-borders'></div>
-            ) : (
-              <span className='text-lg font-semibold text-grey-dark'>{profileDetails.name} {profileDetails.surname}</span>
-            )}
-          </div>
+              <ProfileSummary.Box>
+                  {profileDetails.name || profileDetails.surname ? (
+                    <ProfileSummary.Name />
+                  ) : (
+                    <div className='w-40 h-4 rounded-[104px] bg-borders'></div>
+                  )}
 
-          <div className='mb-10'>
-            {!profileDetails.email ? (
-              <div className='w-[72px] h-2 rounded-[104px] bg-borders'></div>
-            ) : (
-              <span className='text-sm text-grey'>{profileDetails.email}</span>
-            )}
-          </div>
+                  {profileDetails.email ? (
+                    <ProfileSummary.Email />
+                  ) : (
+                    <div className='w-[72px] h-2 rounded-[104px] bg-borders'></div>
+                  )}
+              </ProfileSummary.Box>
 
-          <div className='space-y-5 w-[237px]'>
-            <ProfileLinksList 
-              profileLinks={profileLinks} 
-              renderItem={(link) => (
-                <PlatformCard profileLink={link} />
-              )} 
-            />
+              <ProfileSummary.Links>
+                  <ProfileLinksList 
+                      profileLinks={profileLinks} 
+                      renderItem={(link) => (
+                        <PlatformCard key={link.id} profileLink={link} />
+                      )} 
+                  />
 
-            <div className='space-y-5'>
-              {defaultLinks.map(() => (
-                <div className='h-11 rounded-lg bg-borders'></div>
-              ))}
-            </div>
-          </div>
+                  <div className='space-y-5'>
+                      {defaultLinks.map(() => (
+                        <div className='h-11 rounded-lg bg-borders'></div>
+                      ))}
+                  </div>
+              </ProfileSummary.Links>
+          </ProfileSummary>
         </div>
       </div>
     </div>
