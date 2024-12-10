@@ -1,25 +1,22 @@
 "use client"
 
 import { RootState } from '@/lib/store'
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import ProfileLinksList from '../lists/ProfileLinksList'
 import PlatformCard from '../cards/PlatformCard'
 import ProfileSummary from './ProfileSummary'
+import { generateArray } from '@/lib/utils/generateArray'
 
 function ProfileResult() {
   const { profileLinks, profileDetails } = useSelector((state: RootState) => state.profileLinks)
-  const [defaultLinks, setDefaultLinks] = useState<any[]>([])
+  const [defaultLinks, setDefaultLinks] = useState<string[]>([])
   const maxDefaultArrayLength = 5
 
   useEffect(() => {
-    if (profileLinks.length >= maxDefaultArrayLength) {
-      setDefaultLinks([])
-      return
-    }
+    const defaultArray = generateArray(maxDefaultArrayLength - profileLinks.length)
 
-    setDefaultLinks(new Array(maxDefaultArrayLength - profileLinks.length).fill(null))
+    setDefaultLinks(defaultArray)
   }, [profileLinks])
 
   return (
@@ -55,11 +52,13 @@ function ProfileResult() {
                       )} 
                   />
 
-                  <div className='space-y-5'>
-                      {defaultLinks.map(() => (
-                        <div className='h-11 rounded-lg bg-borders'></div>
-                      ))}
-                  </div>
+                  {defaultLinks.length > 0 && (
+                      <div className='space-y-5'>
+                          {defaultLinks.map((item) => (
+                            <div key={item} className='h-11 rounded-lg bg-borders'></div>
+                          ))}
+                      </div>
+                  )}
               </ProfileSummary.Links>
           </ProfileSummary>
         </div>
