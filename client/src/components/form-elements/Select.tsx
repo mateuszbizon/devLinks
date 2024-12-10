@@ -15,6 +15,7 @@ type SelectContext = {
 	selectedValue: string;
 	onChangeValue: (value: string) => void;
 	closeSelect: () => void;
+	selectOpen: boolean;
 };
 
 const SelectContext = createContext<SelectContext | undefined>(undefined);
@@ -46,11 +47,13 @@ function Select({ value, onChangeValue, children }: SelectProps) {
 
 	return (
 		<SelectContext.Provider
-			value={{ selectedValue: value, onChangeValue, closeSelect }}>
+			value={{ selectedValue: value, onChangeValue, closeSelect, selectOpen }}>
 			<div ref={selectRef} className='relative'>
-				<div
-					className='flex justify-between items-center bg-white rounded-md border border-borders p-4 focus-visible:border-purple cursor-pointer'
-					onClick={() => setSelectOpen(prev => !prev)}>
+				<button
+					className='flex justify-between items-center w-full bg-white rounded-md border border-borders p-4 outline-none focus-visible:border-purple'
+					onClick={() => setSelectOpen(prev => !prev)}
+					type="button"
+				>
 					<span className='flex gap-2 items-center text-base text-grey-dark'>
 						{getPlatformItem(value)?.icon} {value}
 					</span>
@@ -60,7 +63,7 @@ function Select({ value, onChangeValue, children }: SelectProps) {
 						} transition-transform duration-200`}>
 						<ArrowDownIcon />
 					</div>
-				</div>
+				</button>
 				<div
 					className={`absolute top-[120%] w-full border border-borders rounded-md bg-white p-4 z-10 ${
 						selectOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -85,12 +88,21 @@ function SelectItem({ value, children }: SelectItemProps) {
 		context.closeSelect();
 	}
 
+	function handleChooseWithKey(e: React.KeyboardEvent<HTMLLIElement>) {
+		if (e.key === "Enter") {
+			handleChooseItem()
+		}
+	}
+
 	return (
 		<li
+			tabIndex={context.selectOpen ? 0 : -1}
 			className={`${
 				itemSelected ? "text-purple" : "text-grey-dark"
-			} flex items-center gap-2 py-2 text-base border-b border-b-borders last:border-b-0 last:pb-0 first:pt-0 cursor-pointer hover:text-purple transition duration-300`}
-			onClick={handleChooseItem}>
+			} flex items-center gap-2 py-2 text-base border-b border-b-borders last:border-b-0 last:pb-0 first:pt-0 cursor-pointer hover:text-purple outline-none focus-visible:text-purple transition duration-300`}
+			onClick={handleChooseItem}
+			onKeyUp={handleChooseWithKey}
+		>
 			{children}
 		</li>
 	);
