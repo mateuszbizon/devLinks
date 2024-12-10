@@ -19,7 +19,7 @@ function PreviewPage() {
             <ProfileSummary profileDetails={profileDetails}>
                 <ProfileSummary.Image src={profileDetails.image || ""} width={200} height={200} alt='' className='size-[104px]' />
                 <ProfileSummary.Box>
-                    <ProfileSummary.Name />
+                    <ProfileSummary.Name className='text-3xl' />
                     <ProfileSummary.Email />
                 </ProfileSummary.Box>
                 <ProfileSummary.Links>

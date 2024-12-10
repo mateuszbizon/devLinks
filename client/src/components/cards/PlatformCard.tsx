@@ -12,7 +12,7 @@ function PlatformCard({ profileLink }: PlatformCardProps) {
 
 	return (
 		<div
-			className='flex justify-between items-center p-4 rounded-xl'
+			className='flex justify-between items-center p-4 rounded-xl h-11'
 			style={{ backgroundColor: currentPlatform?.bgColor }}>
 			<div
 				className={`flex items-center gap-2 ${
