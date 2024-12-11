@@ -10,10 +10,16 @@ type PlatformCardProps = {
 function PlatformCard({ profileLink }: PlatformCardProps) {
 	const currentPlatform = getPlatformItem(profileLink.platform);
 
+	function copyLink() {
+		navigator.clipboard.writeText(profileLink.link)
+	}
+
 	return (
 		<div
-			className='flex justify-between items-center p-4 rounded-xl h-11'
-			style={{ backgroundColor: currentPlatform?.bgColor }}>
+			className='flex justify-between items-center p-4 rounded-xl h-11 cursor-pointer'
+			style={{ backgroundColor: currentPlatform?.bgColor }}
+			onClick={copyLink}
+		>
 			<div
 				className={`flex items-center gap-2 ${
 					currentPlatform?.isDarkTextColor ? "text-grey-dark" : "text-white"
