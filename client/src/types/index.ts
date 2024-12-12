@@ -10,3 +10,9 @@ export type ProfileDetailsFormValues = {
     email: string, 
     image: string | null
 }
+
+export type PopupMessage = {
+    id: string
+    messageType: string
+    message: string
+}

@@ -2,16 +2,21 @@ import React from "react";
 import ArrowRightIcon from "../icons/ArrowRightIcon";
 import { ProfileLink } from "@/types";
 import { getPlatformItem } from "@/lib/utils/getPlatformItem";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/lib/store";
+import { showCopyToClipboardMessage } from "@/lib/store/slices/popupMessageSlice";
 
 type PlatformCardProps = {
 	profileLink: ProfileLink;
 };
 
 function PlatformCard({ profileLink }: PlatformCardProps) {
+	const dispatch = useDispatch<AppDispatch>()
 	const currentPlatform = getPlatformItem(profileLink.platform);
 
 	function copyLink() {
 		navigator.clipboard.writeText(profileLink.link)
+		dispatch(showCopyToClipboardMessage("The link has been copied to your clipboard!"))
 	}
 
 	return (
