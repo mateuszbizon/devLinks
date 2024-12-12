@@ -1,23 +1,13 @@
 "use client"
 
-import { RootState } from '@/lib/store'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import ProfileLinksList from '../lists/ProfileLinksList'
 import PlatformCard from '../cards/PlatformCard'
 import ProfileSummary from './ProfileSummary'
-import { generateArray } from '@/lib/utils/generateArray'
+import useProfileResult from '@/lib/hooks/useProfileResult'
 
 function ProfileResult() {
-  const { profileLinks, profileDetails } = useSelector((state: RootState) => state.profileLinks)
-  const [defaultLinks, setDefaultLinks] = useState<string[]>([])
-  const maxDefaultArrayLength = 5
-
-  useEffect(() => {
-    const defaultArray = generateArray(maxDefaultArrayLength - profileLinks.length)
-
-    setDefaultLinks(defaultArray)
-  }, [profileLinks])
+  const { profileLinks, profileDetails, defaultLinks } = useProfileResult()
 
   return (
     <div className='flex justify-center p-6 rounded-md bg-white'>
