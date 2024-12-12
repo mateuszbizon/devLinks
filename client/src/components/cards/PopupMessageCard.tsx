@@ -1,10 +1,8 @@
 import { COPY_CLIPBOARD_POPUP_MESSAGE } from '@/constants'
 import { PopupMessage } from '@/types'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import LinkInputIcon from '../icons/LinkInputIcon'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '@/lib/store'
-import { hideMessage } from '@/lib/store/slices/popupMessageSlice'
+import usePopupMessage from '@/lib/hooks/usePopupMessage'
 
 type PopupMessageCardProps = {
     popupMessage: PopupMessage
@@ -12,8 +10,7 @@ type PopupMessageCardProps = {
 }
 
 function PopupMessageCard({ popupMessage, index }: PopupMessageCardProps) {
-    const dispatch = useDispatch<AppDispatch>()
-    const [messageClose, setMessageClose] = useState(false)
+    const { messageClose, handleHideMessage, handleAnimationEnd } = usePopupMessage({ popupMessageId: popupMessage.id })
 
     const popupMessageHeight = 56
     const popupMessageBottomGap = 20
@@ -21,26 +18,6 @@ function PopupMessageCard({ popupMessage, index }: PopupMessageCardProps) {
     const popupMessageTypes: { [key: string]: React.ReactNode } = {
         [COPY_CLIPBOARD_POPUP_MESSAGE]: <LinkInputIcon />
     }
-
-    function handleHideMessage() {
-        setMessageClose(true)
-    }
-
-    function handleAnimationEnd() {
-        if (messageClose) {
-            dispatch(hideMessage(popupMessage.id))
-        }
-    }
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            handleHideMessage()
-        }, 3000)
-
-        return () => {
-            clearTimeout(timeout)
-        }
-    }, [])
 
   return (
     <div
