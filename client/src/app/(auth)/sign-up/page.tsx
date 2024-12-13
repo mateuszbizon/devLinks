@@ -1,3 +1,4 @@
+import SignUpForm from '@/components/forms/SignUpForm'
 import LogoLargeIcon from '@/components/icons/LogoLargeIcon'
 import Link from 'next/link'
 import React from 'react'
@@ -14,7 +15,7 @@ function SignUpPage() {
                 <p className='text-base text-grey'>Let’s get you started sharing your links!</p>
             </div>
             <div className='mb-5'>
-                
+                <SignUpForm />
             </div>
             <div className='flex justify-center flex-wrap gap-1'>
                 <span className='text-base text-grey'>Already have an account?</span>
