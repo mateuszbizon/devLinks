@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { Instrument_Sans } from "next/font/google"
 import Providers from "@/components/Providers";
 import PopupMessage from "@/components/shared/PopupMessage";
+import AuthContainer from "@/components/containers/AuthContainer";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -10,8 +11,8 @@ const instrumentSans = Instrument_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "DevLinks",
-  description: "App to share links for developers.",
+  title: "DevLinks | Auth",
+  description: "Authentication for DevLinks",
 };
 
 export default function RootLayout({
@@ -26,7 +27,9 @@ export default function RootLayout({
       >
         <Providers>
           <PopupMessage />
-          {children}
+          <AuthContainer>
+            {children}
+          </AuthContainer>
         </Providers>
       </body>
     </html>
