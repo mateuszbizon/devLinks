@@ -7,6 +7,8 @@ import { Button } from '../ui/button'
 import { useForm } from 'react-hook-form'
 import { signInSchema, SignInSchema } from '@/validations/signInSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import EmailIcon from '../icons/EmailIcon'
+import PasswordIcon from '../icons/PasswordIcon'
 
 function SignInForm() {
     const form = useForm<SignInSchema>({
@@ -33,7 +35,8 @@ function SignInForm() {
               <FormControl>
                 <Input
                     placeholder="e.g. alex@email.com" 
-                    {...field} 
+                    {...field}
+                    icon={<EmailIcon />}
                     error={form.control._formState.errors.email && form.control._formState.errors.email.message} 
                 />
               </FormControl>
@@ -49,8 +52,10 @@ function SignInForm() {
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
+                    type='password'
                     placeholder="Enter your password" 
-                    {...field} 
+                    {...field}
+                    icon={<PasswordIcon />}
                     error={form.control._formState.errors.password && form.control._formState.errors.password.message} 
                 />
               </FormControl>
