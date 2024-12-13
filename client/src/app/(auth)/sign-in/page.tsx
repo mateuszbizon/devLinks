@@ -17,8 +17,9 @@ function SignInPage() {
         <div className='mb-5'>
           <SignInForm />
         </div>
-        <div className='flex justify-center'>
-          <span className='text-base text-grey'>Don't have an account? <Link href={"/sign-up"} className='link'>Create account</Link></span>
+        <div className='flex justify-center flex-wrap gap-1'>
+          <span className='text-base text-grey'>Don't have an account?</span>
+          <Link href={"/sign-up"} className='link text-base'>Create account</Link>
         </div>
       </div>
     </div>
