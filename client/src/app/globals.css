@@ -18,3 +18,9 @@
         @apply bg-grey-light
     }
 }
+
+@layer components {
+    .link {
+        @apply text-purple hover:text-purple-hover transition-colors duration-300
+    }
+}
