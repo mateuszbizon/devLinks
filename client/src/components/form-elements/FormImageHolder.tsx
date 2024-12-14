@@ -34,7 +34,7 @@ function FormImageHolder({ image, onChangeImage }: FormImageHolderProps) {
 					/>
 					<div className='absolute inset-0 bg-black/50 text-white flex flex-col justify-center items-center gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300'>
 						<UploadImageIcon />
-						<span className='text-lg'>+ Upload Image</span>
+						<span className='text-lg'>Change Image</span>
 					</div>
 				</div>
 			)}
