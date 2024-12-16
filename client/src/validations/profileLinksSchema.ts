@@ -1,5 +1,5 @@
 import { PLATFORM_NAMES } from "@/constants";
-import { EMPTY_FIELD } from "@/constants/validations"
+import { EMPTY_FIELD, URL_INCORRECT } from "@/constants/validations"
 import { z } from "zod"
 
 const platformPatterns: { [key: string]: RegExp } = {
@@ -33,7 +33,7 @@ export const profileLinksSchema = z.object({
         }
 
         return platformPattern.test(data.link)
-    }, { message: "Please check the URL", path: ["link"] }))
+    }, { message: URL_INCORRECT, path: ["link"] }))
 })
 
 export type ProfileLinksSchema = z.infer<typeof profileLinksSchema>
