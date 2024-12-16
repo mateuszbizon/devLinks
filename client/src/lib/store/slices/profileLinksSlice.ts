@@ -1,7 +1,4 @@
-import { PLATFORMS_LIST } from "@/constants/platformsList";
-import { generateRandomId } from "@/lib/utils/generateRandomId";
 import { ProfileDetailsFormValues, ProfileLink } from "@/types";
-import { ProfileDetailsSchema } from "@/validations/profileDetailsSchema";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type ProfileLinksState = {
@@ -28,8 +25,8 @@ export const profileLinksSlice = createSlice({
     name: "profile_links",
     initialState,
     reducers: {
-        addLink: (state) => {
-            state.profileLinks = [...state.profileLinks, { id: generateRandomId(), platform: PLATFORMS_LIST[0].value, link: "" }]
+        addLink: (state, action: PayloadAction<ProfileLink>) => {
+            state.profileLinks = [...state.profileLinks, action.payload]
         },
         deleteLink: (state, action: PayloadAction<string>) => {
             state.profileLinks = state.profileLinks.filter(link => link.id !== action.payload)

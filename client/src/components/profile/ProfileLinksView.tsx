@@ -1,17 +1,14 @@
 "use client";
 
 import React from "react";
-import { Button } from "../ui/button";
 import ProfileLinksForm from "../forms/ProfileLinksForm";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/lib/store";
-import { addLink } from "@/lib/store/slices/profileLinksSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
 
 function ProfileLinksView() {
 	const { profileLinks } = useSelector(
 		(state: RootState) => state.profileLinks
 	);
-	const dispatch = useDispatch<AppDispatch>();
 
 	return (
 		<div>
@@ -23,12 +20,6 @@ function ProfileLinksView() {
 					Add/edit/remove links below and then share all your profiles with the
 					world!
 				</p>
-				<Button
-					variant={"secondary"}
-					className='w-full mt-5'
-					onClick={() => dispatch(addLink())}>
-					+ Add new link
-				</Button>
 			</div>
 
 			<ProfileLinksForm profileLinks={profileLinks} />

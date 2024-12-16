@@ -10,7 +10,7 @@ import { deleteLink, updateLink } from "@/lib/store/slices/profileLinksSlice";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import LinkInputIcon from "../icons/LinkInputIcon";
-import { FieldErrors } from "react-hook-form";
+import { FieldErrors, UseFieldArrayRemove, UseFormSetValue } from "react-hook-form";
 import { ProfileLinksSchema } from "@/validations/profileLinksSchema";
 import Select from "../form-elements/Select";
 import { PLATFORMS_LIST } from "@/constants/platformsList";
@@ -19,26 +19,37 @@ type ProfileLinkCardProps = PropsWithChildren & {
 	profileLink: ProfileLink;
 	linkIndex: number;
 	errors: FieldErrors<ProfileLinksSchema>;
+	setValue: UseFormSetValue<ProfileLinksSchema>
+	removeFieldArray: UseFieldArrayRemove
 };
 
 function ProfileLinkCard({
 	profileLink,
 	linkIndex,
 	errors,
+	setValue,
+	removeFieldArray
 }: ProfileLinkCardProps) {
-	const [currentLink, setCurrentLink] = useState(profileLink);
 	const dispatch = useDispatch<AppDispatch>();
+	const [currentLink, setCurrentLink] = useState(profileLink)
 
 	function handleChangeInput(value: string) {
-		setCurrentLink({ ...currentLink, link: value });
+		setCurrentLink({ ...currentLink, link: value })
+		setValue(`profileLinks.${linkIndex}.link`, value)
 	}
 
 	function handleChangeSelect(value: string) {
-		setCurrentLink({ ...currentLink, platform: value });
+		setCurrentLink({ ...currentLink, platform: value })
+		setValue(`profileLinks.${linkIndex}.platform`, value)
+	}
+
+	function handleRemoveLink() {
+		removeFieldArray(linkIndex)
+		dispatch(deleteLink(profileLink.id))
 	}
 
 	useEffect(() => {
-		dispatch(updateLink(currentLink));
+		dispatch(updateLink(currentLink))
 	}, [currentLink]);
 
 	return (
@@ -51,7 +62,8 @@ function ProfileLinkCard({
 				<Button
 					variant={"tab"}
 					className='p-0 text-base'
-					onClick={() => dispatch(deleteLink(profileLink.id))}>
+					onClick={handleRemoveLink}
+				>
 					Remove
 				</Button>
 			</div>
@@ -73,12 +85,13 @@ function ProfileLinkCard({
 					<Input
 						id={`link-${profileLink.id}`}
 						type='text'
+						value={currentLink.link}
 						placeholder='e.g. https://www.github.com/johnappleseed'
 						icon={<LinkInputIcon />}
 						onChange={e => handleChangeInput(e.target.value)}
 						error={
-							errors.profileLinks &&
-							errors.profileLinks[linkIndex]?.link?.message
+							errors.profileLinks?.[linkIndex]?.link &&
+							errors.profileLinks[linkIndex].link.message
 						}
 					/>
 				</div>
