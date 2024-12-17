@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
+import errorHandler from "./middlewares/errorHandler"
 
 dotenv.config()
 
@@ -15,6 +16,8 @@ app.use(cors({
     credentials: true,
 }))
 app.use(cookieParser())
+
+app.use(errorHandler)
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
