@@ -4,6 +4,7 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 import errorHandler from "./middlewares/errorHandler"
+import userRoutes from "./routes/userRoutes"
 
 dotenv.config()
 
@@ -16,6 +17,8 @@ app.use(cors({
     credentials: true,
 }))
 app.use(cookieParser())
+
+app.use("/users", userRoutes)
 
 app.use(errorHandler)
 
