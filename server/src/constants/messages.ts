@@ -20,4 +20,5 @@ export const MESSAGES = {
 export const MESSAGE_CODES = {
     validationFail: "VALIDATION_FAIL",
     emailTaken: "EMAIL_TAKEN",
+    invalidCredentials: "INVALID_CREDENTIALS"
 }
