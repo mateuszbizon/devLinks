@@ -9,8 +9,9 @@ import { SignInResponse } from "../../types/userResponse";
 import generateRefreshToken from "../../utils/generateRefreshToken";
 import generateAccessToken from "../../utils/generateAccessToken";
 import { TOKEN } from "../../constants";
+import { MainResponse } from "../../types";
 
-export async function signInController(req: Request<{}, {}, SignInSchema>, res: Response<SignInResponse>, next: NextFunction) {
+export async function signInController(req: Request<{}, {}, SignInSchema>, res: Response<MainResponse<SignInResponse>>, next: NextFunction) {
     const { email, password } = req.body
     
     try {
@@ -46,10 +47,13 @@ export async function signInController(req: Request<{}, {}, SignInSchema>, res: 
         })
 
         res.status(200).json({
-            token: accessToken,
-            user: {
-                id: existingUser.id,
-                email: existingUser.email
+            message: MESSAGES.user.userSignIn,
+            data: {
+                token: accessToken,
+                user: {
+                    id: existingUser.id,
+                    email: existingUser.email
+                }
             }
         })
     } catch (error) {
