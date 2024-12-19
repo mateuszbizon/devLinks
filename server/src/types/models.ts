@@ -1,3 +1,5 @@
+import { JsonValue } from "@prisma/client/runtime/library";
+
 export type User = {
     id: string;
     email: string;
@@ -12,6 +14,6 @@ export type UserDetails = {
     surname?: string | null;
     image?: string | null;
     email?: string | null;
-    links?: Array<{ id: string, platform: string; link: string }> | null;
+    links?: JsonValue | null;
     userId: string;
 };  

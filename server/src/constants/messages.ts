@@ -2,7 +2,9 @@ export const MESSAGES = {
     user: {
         emailTaken: "Email already taken",
         userCreated: "User account has been successfully created",
-        userSignIn: "User signed in successfully"
+        userSignIn: "User signed in successfully",
+        userNotFound: "User not found",
+        userDetailsRetrieved: "User details retrieved successfully"
     },
     auth: {
         notAuthenticated: "User not authenticated",
