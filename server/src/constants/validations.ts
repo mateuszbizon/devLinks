@@ -1,5 +1,7 @@
 export const EMAIL_EMPTY = "Email can't be empty"
 export const PASSWORD_EMPTY = "Password can't be empty"
+export const NAME_EMPTY = "Name can't be empty"
+export const SURNAME_EMPTY = "Surname can't be empty"
 export const EMAIL_INVALID = "Invalid email"
 export const PASSWORD_LENGTH_INCORRECT = "Password length minimum 8 characters"
 export const PASSWORDS_NOT_EQUAL = "Passwords not equal"
