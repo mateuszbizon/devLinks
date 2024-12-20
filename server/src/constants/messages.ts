@@ -4,7 +4,8 @@ export const MESSAGES = {
         userCreated: "User account has been successfully created",
         userSignIn: "User signed in successfully",
         userNotFound: "User not found",
-        userDetailsRetrieved: "User details retrieved successfully"
+        userDetailsRetrieved: "User details retrieved successfully",
+        userDetailsUpdated: "User details updated successfully",
     },
     auth: {
         notAuthenticated: "User not authenticated",
