@@ -7,6 +7,7 @@ import { USER_ID } from "../../constants";
 import { updateUserDetailsService } from "../../services/users/updateUserDetailsService";
 import { MainResponse } from "../../types";
 import { deleteTemporaryFile } from "../../utils/deleteTemporaryFile";
+import { uploadImageToCloudinary } from "../../utils/cloudinary";
 
 export async function updateUserDetailsController(req: Request<{}, {}, UpdateDetailsSchema>, res: Response<MainResponse>, next: NextFunction) {
     const { name, surname, email } = req.body
@@ -20,7 +21,15 @@ export async function updateUserDetailsController(req: Request<{}, {}, UpdateDet
             return next(new BadRequestError(validationResult.error.errors[0].message, MESSAGE_CODES.validationFail))
         }
 
-        const fileUrl = uploadedFile ? "uploadedFile.path" : null
+        let fileUrl: string | null = null
+
+        if (uploadedFile) {
+            fileUrl = await uploadImageToCloudinary(uploadedFile.path)
+
+            if (!fileUrl) {
+                return next(new DatabaseError())
+            }
+        }
 
         const updatedDetails = await updateUserDetailsService({ name, surname, email, image: fileUrl, userId })
 
