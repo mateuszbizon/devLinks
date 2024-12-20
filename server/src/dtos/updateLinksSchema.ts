@@ -20,7 +20,7 @@ const platformPatterns: { [key: string]: RegExp } = {
 }
 
 export const updateLinksSchema = z.object({
-    profileLinks: z.array(z.object({
+    links: z.array(z.object({
         id: z.string(),
         platform: z.string(),
         link: z.string().min(1, FIELD_EMPTY),
@@ -28,7 +28,7 @@ export const updateLinksSchema = z.object({
         const platformPattern = platformPatterns[data.platform]
 
         if (!platformPattern) {
-            return true
+            return false
         }
 
         return platformPattern.test(data.link)
