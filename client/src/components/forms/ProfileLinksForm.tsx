@@ -47,7 +47,7 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='p-6 pt-0'>
+        <div className='p-6'>
             <Button
                 variant={"secondary"}
                 className='w-full'
