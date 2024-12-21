@@ -31,6 +31,7 @@ function ProfileDetailsForm() {
 			name: profileDetails.name,
 			surname: profileDetails.surname,
 			email: profileDetails.email,
+			image: null
 		},
 	});
 
