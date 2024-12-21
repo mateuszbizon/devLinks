@@ -16,3 +16,8 @@ export type PopupMessage = {
     messageType: string
     message: string
 }
+
+export type User = {
+    id: string
+    email: string
+}

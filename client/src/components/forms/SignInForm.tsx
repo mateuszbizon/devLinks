@@ -9,8 +9,10 @@ import { signInSchema, SignInSchema } from '@/validations/signInSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import EmailIcon from '../icons/EmailIcon'
 import PasswordIcon from '../icons/PasswordIcon'
+import useSignIn from '@/lib/hooks/services/userServices/useSignIn'
 
 function SignInForm() {
+    const { handleSignIn, isPending } = useSignIn()
     const form = useForm<SignInSchema>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -21,6 +23,7 @@ function SignInForm() {
 
     function onSubmit(data: SignInSchema) {
         console.log(data)
+        handleSignIn(data)
     }
 
   return (
@@ -63,7 +66,7 @@ function SignInForm() {
           )}
         />
 
-        <Button type="submit" className='w-full'>Login</Button>
+        <Button type="submit" className='w-full' disabled={isPending}>Login</Button>
       </form>
     </Form>
   )
