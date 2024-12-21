@@ -5,6 +5,11 @@ export type MainResponse<Data = any> = {
     data?: Data;
 }
 
+export type ErrorResponse = {
+    message: string;
+    messageCode: string;
+}
+
 export type SignInResponse = {
     token: string;
     user: User;
