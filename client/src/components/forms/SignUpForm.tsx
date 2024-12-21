@@ -9,8 +9,10 @@ import { Button } from '../ui/button'
 import { useForm } from 'react-hook-form'
 import { signUpSchema, SignUpSchema } from '@/validations/signUpSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import useSignUp from '@/lib/hooks/services/userServices/useSignUp'
 
 function SignUpForm() {
+    const { handleSignUp, isPending } = useSignUp()
     const form = useForm<SignUpSchema>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
@@ -21,7 +23,7 @@ function SignUpForm() {
     })
 
     function onSubmit(data: SignUpSchema) {
-        console.log(data)
+        handleSignUp(data)
     }
 
   return (
@@ -87,7 +89,7 @@ function SignUpForm() {
                 <span className='text-xs text-grey'>Password must contain at least 8 characters</span>
             </div>
 
-            <Button type="submit" className='w-full'>Create new account</Button>
+            <Button type="submit" className='w-full' disabled={isPending}>Create new account</Button>
         </form>
     </Form>
   )
