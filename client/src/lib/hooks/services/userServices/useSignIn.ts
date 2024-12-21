@@ -1,11 +1,16 @@
+import { MESSAGES } from '@/constants/messages'
 import { signIn } from '@/lib/services/userServices'
+import { AppDispatch } from '@/lib/store'
+import { showDefaultMessage } from '@/lib/store/slices/popupMessageSlice'
 import getMessageCodes from '@/lib/utils/getMessageCode'
 import { ErrorResponse, MainResponse, SignInResponse } from '@/types/response'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
 
 function useSignIn() {
+    const dispatch = useDispatch<AppDispatch>()
     const router = useRouter()
     const { mutate: handleSignIn, isPending } = useMutation({
         mutationFn: signIn,
@@ -14,11 +19,11 @@ function useSignIn() {
         },
         onError: (error: AxiosError<ErrorResponse>) => {
             if (error.response?.status === 400) {
-                console.log(getMessageCodes(error.response.data.messageCode, error.response.data.message))
+                dispatch(showDefaultMessage(getMessageCodes(error.response.data.messageCode, error.response.data.message)))
                 return
             }
 
-            console.log(error.response?.data.message)
+            dispatch(showDefaultMessage(MESSAGES.database.databaseFail))
         }
     })
 
