@@ -50,7 +50,7 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
         <div className='p-6'>
             <Button
                 variant={"secondary"}
-                className='w-full'
+                className='w-full mb-5'
                 onClick={handleAddLink}
             >
                 + Add new link

@@ -3,9 +3,9 @@ import IllustrationEmptyIcon from "../icons/IllustrationEmptyIcon";
 
 function ProfileLinksEmpty() {
 	return (
-		<div className='flex flex-col items-center gap-3'>
+		<div className='flex flex-col items-center gap-5 p-5 bg-grey-light rounded-xl'>
 			<IllustrationEmptyIcon />
-			<div className='max-w-[255px] md:max-w-[488px] space-y-3'>
+			<div className='max-w-[255px] md:max-w-[488px] space-y-5'>
 				<span className='text-grey-dark text-2xl md:text-3xl font-bold text-center block'>
 					Let's get you started
 				</span>
