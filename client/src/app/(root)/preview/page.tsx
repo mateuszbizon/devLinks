@@ -1,5 +1,6 @@
 "use client"
 
+import protectRoute from '@/components/auth/protectedRoute'
 import PlatformCard from '@/components/cards/PlatformCard'
 import ProfileLinksList from '@/components/lists/ProfileLinksList'
 import PreviewNav from '@/components/navs/PreviewNav'
@@ -36,4 +37,4 @@ function PreviewPage() {
   )
 }
 
-export default PreviewPage
+export default protectRoute(PreviewPage)
