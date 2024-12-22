@@ -1,3 +1,6 @@
+"use client"
+
+import publicRoute from '@/components/auth/publicRoute'
 import SignUpForm from '@/components/forms/SignUpForm'
 import LogoLargeIcon from '@/components/icons/LogoLargeIcon'
 import Link from 'next/link'
@@ -26,4 +29,4 @@ function SignUpPage() {
   )
 }
 
-export default SignUpPage
+export default publicRoute(SignUpPage)

@@ -1,3 +1,6 @@
+"use client"
+
+import publicRoute from '@/components/auth/publicRoute'
 import SignInForm from '@/components/forms/SignInForm'
 import LogoLargeIcon from '@/components/icons/LogoLargeIcon'
 import Link from 'next/link'
@@ -26,4 +29,4 @@ function SignInPage() {
   )
 }
 
-export default SignInPage
+export default publicRoute(SignInPage)
