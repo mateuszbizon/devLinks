@@ -10,15 +10,19 @@ import { useState } from "react";
 
 function Home() {
   const { userData } = useAuthContext()
-  const { isLoading, isError, error } = useGetUserDetails({ userEmail: userData?.email! })
+  const { userDetailsData, isLoading, isError, error } = useGetUserDetails({ userEmail: userData?.email! })
   const [profileView, setProfileView] = useState(PROFILE_LINKS_VIEW)
 
   return (   
     <div>
-      <ProfileNav profileView={profileView} setProfileView={setProfileView} />
-      <div className="mt-5">
-        <ProfileViews profileView={profileView} />
-      </div>
+      {userDetailsData && (
+        <div>
+          <ProfileNav profileView={profileView} setProfileView={setProfileView} />
+          <div className="mt-5">
+            <ProfileViews profileView={profileView} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
 import ProfileLinksList from '../lists/ProfileLinksList'
 import { ProfileLink } from '@/types'
@@ -44,6 +44,10 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
         dispatch(addLink(newLink))
         append(newLink)
     }
+
+    useEffect(() => {
+        setValue("profileLinks", profileLinks)
+    }, [profileLinks])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

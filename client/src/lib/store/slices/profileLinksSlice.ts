@@ -25,6 +25,10 @@ export const profileLinksSlice = createSlice({
     name: "profile_links",
     initialState,
     reducers: {
+        setInitialState: (state, action: PayloadAction<ProfileLinksState>) => {
+            state.profileDetails = action.payload.profileDetails
+            state.profileLinks = action.payload.profileLinks
+        },
         addLink: (state, action: PayloadAction<ProfileLink>) => {
             state.profileLinks = [...state.profileLinks, action.payload]
         },
@@ -46,5 +50,5 @@ export const profileLinksSlice = createSlice({
     }
 })
 
-export const { addLink, deleteLink, updateLink, updateDetails } = profileLinksSlice.actions
+export const { addLink, deleteLink, updateLink, updateDetails, setInitialState } = profileLinksSlice.actions
 export default profileLinksSlice.reducer
