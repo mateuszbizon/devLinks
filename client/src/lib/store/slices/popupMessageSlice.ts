@@ -1,4 +1,4 @@
-import { COPY_CLIPBOARD_POPUP_MESSAGE, DEFAULT_POPUP_MESSAGE } from "@/constants"
+import { CHANGES_SAVED_POPUP_MESSAGE, COPY_CLIPBOARD_POPUP_MESSAGE, DEFAULT_POPUP_MESSAGE } from "@/constants"
 import { generateRandomId } from "@/lib/utils/generateRandomId"
 import { PopupMessage } from "@/types"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
@@ -17,6 +17,9 @@ export const popupMessageSlice = createSlice({
     reducers: {
         showCopyToClipboardMessage: (state, action: PayloadAction<string>) => {
             state.popupMessages = [...state.popupMessages, { id: generateRandomId(), messageType: COPY_CLIPBOARD_POPUP_MESSAGE, message: action.payload }]
+        },
+        showChangesSavedMessage: (state, action: PayloadAction<string>) => {
+            state.popupMessages = [...state.popupMessages, { id: generateRandomId(), messageType: CHANGES_SAVED_POPUP_MESSAGE, message: action.payload }]
         },
         showDefaultMessage: (state, action: PayloadAction<string>) => {
             state.popupMessages = [...state.popupMessages, { id: generateRandomId(), messageType: DEFAULT_POPUP_MESSAGE, message: action.payload }]
