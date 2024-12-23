@@ -8,6 +8,9 @@ export const MESSAGES = {
     },
     database: {
         databaseFail: "Database problems. Try again later",
+    },
+    page: {
+        pageNotFound: "Page you are looking for doesn't exist",
     }
 }
 

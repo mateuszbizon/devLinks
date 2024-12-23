@@ -2,6 +2,7 @@
 
 import protectRoute from "@/components/auth/protectedRoute";
 import CircleLoading from "@/components/loading/CircleLoading";
+import ErrorMessage from "@/components/messages/ErrorMessge";
 import ProfileNav from "@/components/navs/ProfileNav";
 import ProfileViews from "@/components/profile/ProfileViews";
 import { PROFILE_LINKS_VIEW } from "@/constants";
@@ -25,6 +26,7 @@ function Home() {
         </div>
       )}
       {isLoading && <CircleLoading />}
+      {isError && <ErrorMessage statusCode={error?.response?.status} />}
     </div>
   );
 }
