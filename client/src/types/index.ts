@@ -21,3 +21,13 @@ export type User = {
     id: string
     email: string
 }
+
+export type UserDetails = {
+    id: string;
+    name: string;
+    surname: string;
+    image: string | null;
+    email: string;
+    links: ProfileLink[];
+    userId: string;
+}

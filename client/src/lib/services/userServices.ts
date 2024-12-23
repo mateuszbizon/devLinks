@@ -13,3 +13,9 @@ export async function signUp(data: SignUpSchema) {
 
     return response.data
 }
+
+export async function getUserDetails(userEmail: string) {
+    const response = await API.get(`/users/get-user-details/${userEmail}`)
+
+    return response.data
+}

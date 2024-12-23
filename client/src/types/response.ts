@@ -1,4 +1,4 @@
-import { User } from ".";
+import { User, UserDetails } from ".";
 
 export type MainResponse<Data = any> = {
     message: string;
@@ -13,4 +13,8 @@ export type ErrorResponse = {
 export type SignInResponse = {
     token: string;
     user: User;
+}
+
+export type GetUserDetailsResponse = {
+    userDetails?: Pick<UserDetails, "name" | "surname" | "links" | "email" | "image"> | null;
 }

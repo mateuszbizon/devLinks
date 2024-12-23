@@ -1,7 +1,7 @@
 import { API, CustomAxiosRequestConfig } from '@/lib/services'
 import { getToken } from '@/lib/services/authServices'
 import { User } from '@/types'
-import { SignInResponse } from '@/types/response'
+import { MainResponse, SignInResponse } from '@/types/response'
 import React, { createContext, PropsWithChildren, useContext, useEffect, useLayoutEffect, useState } from 'react'
 
 type AuthContextType = {
@@ -43,9 +43,11 @@ function AuthContextProvider({ children }: PropsWithChildren) {
     useEffect(() => {
         const handleGetToken = async () => {
             try {
-                const response: SignInResponse = await getToken()
+                const response: MainResponse<SignInResponse> = await getToken()
 
-                saveUser(response)
+                if (response.data) {
+                    saveUser(response.data)
+                }
             } catch {
                 clearUser()
             }
@@ -74,11 +76,13 @@ function AuthContextProvider({ children }: PropsWithChildren) {
 
                 if (error.response.status == 403) {
                     try {
-                        const response: SignInResponse = await getToken()
+                        const response: MainResponse<SignInResponse> = await getToken()
 
-                        saveUser(response)
-                        originalRequest.headers.Authorization = `Bearer ${response.token}`
-                        originalRequest._retry = true
+                        if (response.data) {
+                            saveUser(response.data)
+                            originalRequest.headers.Authorization = `Bearer ${response.data.token}`
+                            originalRequest._retry = true
+                        }
 
                         return API(originalRequest)
                     } catch {
