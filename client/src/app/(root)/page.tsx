@@ -1,6 +1,7 @@
 "use client"
 
 import protectRoute from "@/components/auth/protectedRoute";
+import CircleLoading from "@/components/loading/CircleLoading";
 import ProfileNav from "@/components/navs/ProfileNav";
 import ProfileViews from "@/components/profile/ProfileViews";
 import { PROFILE_LINKS_VIEW } from "@/constants";
@@ -23,6 +24,7 @@ function Home() {
           </div>
         </div>
       )}
+      {isLoading && <CircleLoading />}
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useAuthContext } from "@/context/AuthContext"
 import { redirect } from "next/navigation"
 import { useEffect } from "react"
+import CircleLoading from "../loading/CircleLoading"
 
 export default function protectRoute(Component: any) {
     return function ProtectedRoute(props: any) {
@@ -16,7 +17,7 @@ export default function protectRoute(Component: any) {
 
         if (isSignedIn == null) {
             return (
-                <div>Loading...</div>
+                <CircleLoading />
             )
         }
 
