@@ -14,12 +14,14 @@ import { AppDispatch } from '@/lib/store'
 import { addLink } from '@/lib/store/slices/profileLinksSlice'
 import { PLATFORMS_LIST } from '@/constants/platformsList'
 import { generateRandomId } from '@/lib/utils/generateRandomId'
+import useUpdateUserLinks from '@/lib/hooks/services/userServices/useUpdateUserLinks'
 
 type ProfileLinksFormProps = {
     profileLinks: ProfileLink[]
 }
 
 function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
+    const { handleUpdateUserLinks, isPending } = useUpdateUserLinks()
     const dispatch = useDispatch<AppDispatch>()
     const { handleSubmit, control, setValue, formState: { errors } } = useForm<ProfileLinksSchema>({
         resolver: zodResolver(profileLinksSchema),
@@ -36,6 +38,7 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
 
     function onSubmit(data: ProfileLinksSchema) {
         console.log(data)
+        handleUpdateUserLinks(data)
     }
 
     function handleAddLink() {
@@ -71,7 +74,7 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
         </div>
         <div className='w-full h-[1px] bg-borders'></div>
         <div className='flex justify-end p-6'>
-            <Button className='w-full md:w-auto' disabled={!profileLinks.length}>
+            <Button className='w-full md:w-auto' disabled={!profileLinks.length || isPending}>
                 Save
             </Button>
         </div>

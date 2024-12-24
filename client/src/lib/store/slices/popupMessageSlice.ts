@@ -30,5 +30,5 @@ export const popupMessageSlice = createSlice({
     }
 })
 
-export const { showCopyToClipboardMessage, showDefaultMessage, hideMessage } = popupMessageSlice.actions
+export const { showCopyToClipboardMessage, showDefaultMessage, showChangesSavedMessage, hideMessage } = popupMessageSlice.actions
 export default popupMessageSlice.reducer

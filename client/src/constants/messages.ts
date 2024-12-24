@@ -2,6 +2,7 @@ export const MESSAGES = {
     user: {
         emailTaken: "Email already taken",
         userCreated: "User account has been successfully created",
+        changesSaved: "Your changes have been successfully saved!",
     },
     auth: {
         invalidCredentials: "Email or password incorrect",
