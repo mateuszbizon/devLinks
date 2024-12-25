@@ -10,7 +10,7 @@ function PopupMessage() {
     const { popupMessages } = useSelector((state: RootState) => state.popupMessage)
 
   return (
-    <div className='fixed bottom-0 left-1/2 w-[300px] sm:w-[397px] -translate-x-1/2 z-10'>
+    <div className='fixed bottom-0 left-1/2 w-[300px] sm:w-[450px] -translate-x-1/2 z-10'>
         <PopupMessageList
             popupMessages={popupMessages}
             renderItem={(message, index) => (
