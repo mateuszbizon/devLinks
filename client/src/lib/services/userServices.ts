@@ -26,3 +26,9 @@ export async function updateUserLinks(data: ProfileLinksSchema) {
 
     return response.data
 }
+
+export async function updateUserDetails(data: FormData) {
+    const response = await API.put("/users/update-user-details", data)
+
+    return response.data
+}

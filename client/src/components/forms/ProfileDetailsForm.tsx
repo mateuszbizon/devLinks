@@ -15,8 +15,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/store";
 import { updateDetails } from "@/lib/store/slices/profileLinksSlice";
 import { getFileFromUrl } from "@/lib/utils/getFileFromUrl";
+import useUpdateUserDetails from "@/lib/hooks/services/userServices/useUpdateUserDetails";
 
 function ProfileDetailsForm() {
+	const { handleUpdateUserDetails, isPending } = useUpdateUserDetails();
 	const { profileDetails } = useSelector(
 		(state: RootState) => state.profileLinks
 	);
@@ -64,6 +66,17 @@ function ProfileDetailsForm() {
 
 	function onSubmit(data: ProfileDetailsSchema) {
 		console.log(data);
+		const formData = new FormData()
+
+		formData.append("name", data.name)
+		formData.append("surname", data.surname)
+		formData.append("email", data.email)
+		
+		if (data.image) {
+			formData.append("image", data.image)
+		}
+
+		handleUpdateUserDetails(formData)
 	}
 
 	useEffect(() => {
@@ -150,7 +163,7 @@ function ProfileDetailsForm() {
 			</div>
 			<div className='w-full h-[1px] bg-borders'></div>
 			<div className='flex justify-end p-6'>
-				<Button className='w-full md:w-auto'>Save</Button>
+				<Button className='w-full md:w-auto' disabled={isPending}>Save</Button>
 			</div>
 		</form>
 	);
