@@ -4,7 +4,7 @@ type NavContainerProps = PropsWithChildren
 
 function NavContainer({ children }: NavContainerProps) {
   return (
-    <div className='md:p-6 xl:container mx-auto'>
+    <div className='md:p-nav-container xl:container mx-auto'>
         {children}
     </div>
   )

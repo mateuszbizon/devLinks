@@ -20,9 +20,7 @@ function Home() {
       {userDetailsData && (
         <div>
           <ProfileNav profileView={profileView} setProfileView={setProfileView} />
-          <div className="mt-5">
-            <ProfileViews profileView={profileView} />
-          </div>
+          <ProfileViews profileView={profileView} />
         </div>
       )}
       {isLoading && <CircleLoading />}

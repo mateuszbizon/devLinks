@@ -18,7 +18,7 @@ function ProfileNav({ profileView, setProfileView }: ProfileNavProps) {
   return (
     <nav>
         <NavContainer>
-            <div className='bg-white flex justify-between items-center px-6 py-4'>
+            <div className='bg-white flex justify-between items-center px-6 h-nav'>
                 <div>
                     <div className='md:hidden'>
                         <LogoSmallIcon />

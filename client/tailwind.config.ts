@@ -46,6 +46,12 @@ export default {
           '100%': { opacity: '0' },
         },
       },
+      padding: {
+        'nav-container' : '1.5rem',
+      },
+      height: {
+        'nav': '5rem',
+      }
     },
   },
   plugins: [],

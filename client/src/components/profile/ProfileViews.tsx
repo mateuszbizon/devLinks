@@ -19,7 +19,7 @@ function ProfileViews({ profileView }: ProfileViewsProps) {
     <div>
         <MainContainer>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
-                <div className='hidden lg:block'>
+                <div className='hidden lg:block relative'>
                     <ProfileResult />
                 </div>
                 <div className='lg:col-end-4 lg:col-span-2 bg-white rounded-md'>
