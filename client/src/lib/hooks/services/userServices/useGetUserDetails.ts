@@ -12,9 +12,10 @@ type Props = {
 
 function useGetUserDetails({ userEmail }: Props) {
     const dispatch = useDispatch()
-    const { data, isLoading, isError, error } = useQuery<MainResponse<GetUserDetailsResponse>, AxiosError>({
+    const { data, isLoading, isError, error} = useQuery<MainResponse<GetUserDetailsResponse>, AxiosError>({
         queryKey: ['getUserDetails'],
-        queryFn: () => getUserDetails(userEmail)
+        queryFn: () => getUserDetails(userEmail),
+        retry: false,
     })
 
     useEffect(() => {
@@ -28,7 +29,8 @@ function useGetUserDetails({ userEmail }: Props) {
             surname: userDetails.surname,
             email: userDetails.email,
             image: userDetails.image
-          }
+          },
+          isDataFetched: true
         }))
       }
     }, [data])

@@ -9,6 +9,7 @@ type ProfileLinksState = {
         email: string
         image: string | null
     }
+    isDataFetched: boolean
 }
 
 const initialState: ProfileLinksState = {
@@ -18,7 +19,8 @@ const initialState: ProfileLinksState = {
         surname: "",
         email: "",
         image: null
-    }
+    },
+    isDataFetched: false
 } 
 
 export const profileLinksSlice = createSlice({
@@ -26,8 +28,11 @@ export const profileLinksSlice = createSlice({
     initialState,
     reducers: {
         setInitialState: (state, action: PayloadAction<ProfileLinksState>) => {
-            state.profileDetails = action.payload.profileDetails
-            state.profileLinks = action.payload.profileLinks
+            if (!state.isDataFetched) {
+                state.profileDetails = action.payload.profileDetails
+                state.profileLinks = action.payload.profileLinks
+                state.isDataFetched = action.payload.isDataFetched
+            }
         },
         addLink: (state, action: PayloadAction<ProfileLink>) => {
             state.profileLinks = [...state.profileLinks, action.payload]
