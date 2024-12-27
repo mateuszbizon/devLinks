@@ -4,6 +4,8 @@ import protectRoute from '@/components/auth/protectedRoute'
 import PlatformCard from '@/components/cards/PlatformCard'
 import ProfileLinksList from '@/components/lists/ProfileLinksList'
 import PreviewNav from '@/components/navs/PreviewNav'
+import PreviewBackground from '@/components/preview/PreviewBackground'
+import PreviewDetailsBox from '@/components/preview/PreviewDetailsBox'
 import ProfileSummary from '@/components/profile/ProfileSummary'
 import { RootState } from '@/lib/store'
 import React from 'react'
@@ -15,8 +17,8 @@ function PreviewPage() {
   return (
     <div>
         <PreviewNav />
-        <div className='absolute top-0 w-full bg-purple rounded-b-3xl h-[350px] -z-10 opacity-0 md:opacity-100'></div>
-        <div className='bg-white rounded-3xl md:px-14 md:py-12 mt-12 md:mt-24 max-w-[237px] md:max-w-[349px] mx-auto'>
+        <PreviewBackground />
+        <PreviewDetailsBox>
             <ProfileSummary profileDetails={profileDetails}>
                 {profileDetails.image && (
                     <ProfileSummary.Image src={profileDetails.image} width={200} height={200} alt='' className='size-[104px]' />
@@ -34,7 +36,7 @@ function PreviewPage() {
                     />
                 </ProfileSummary.Links>
             </ProfileSummary>
-        </div>
+        </PreviewDetailsBox>
     </div>
   )
 }
