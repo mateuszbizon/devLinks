@@ -10,9 +10,9 @@ function ProfileResult() {
   const { profileLinks, profileDetails, defaultLinks } = useProfileResult()
 
   return (
-    <div className='sticky top-0 flex justify-center py-6 rounded-md bg-white h-[calc(100vh-theme(height.nav)-2*theme(padding.nav-container))] overflow-auto'>
-      <div className='w-[308px] min-h-[632px] border border-grey rounded-3xl p-3'>
-        <div className='size-full border border-grey rounded-2xl p-5'>
+    <div className='sticky top-0 py-6 rounded-md bg-white h-[calc(100vh-theme(height.nav)-2*theme(padding.nav-container))] overflow-auto'>
+      <div className='flex flex-col w-[308px] min-h-[632px] border border-grey rounded-3xl p-3 mx-auto'>
+        <div className='grow border border-grey rounded-2xl p-5'>
           <ProfileSummary profileDetails={profileDetails}>
               {profileDetails.image ? (
                 <ProfileSummary.Image src={profileDetails.image} width={200} height={200} alt='' />
