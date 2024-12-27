@@ -5,6 +5,7 @@ import { getPlatformItem } from "@/lib/utils/getPlatformItem";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/lib/store";
 import { showCopyToClipboardMessage } from "@/lib/store/slices/popupMessageSlice";
+import { MESSAGES } from "@/constants/messages";
 
 type PlatformCardProps = {
 	profileLink: ProfileLink;
@@ -16,7 +17,7 @@ function PlatformCard({ profileLink }: PlatformCardProps) {
 
 	function copyLink() {
 		navigator.clipboard.writeText(profileLink.link)
-		dispatch(showCopyToClipboardMessage("The link has been copied to your clipboard!"))
+		dispatch(showCopyToClipboardMessage(MESSAGES.user.linkCopied))
 	}
 
 	return (
