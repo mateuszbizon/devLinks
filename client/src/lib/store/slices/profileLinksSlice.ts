@@ -44,11 +44,18 @@ export const profileLinksSlice = createSlice({
                 return link
             })
         },
+        swapLinks(state, action: PayloadAction<{ fromIndex: number; toIndex: number }>) {
+            const { fromIndex, toIndex } = action.payload
+            const temp = state.profileLinks[fromIndex]
+
+            state.profileLinks[fromIndex] = state.profileLinks[toIndex]
+            state.profileLinks[toIndex] = temp
+          },
         updateDetails: (state, action: PayloadAction<ProfileDetailsFormValues>) => {
             state.profileDetails = action.payload
         }
     }
 })
 
-export const { addLink, deleteLink, updateLink, updateDetails, setInitialState } = profileLinksSlice.actions
+export const { addLink, deleteLink, updateLink, swapLinks, updateDetails, setInitialState } = profileLinksSlice.actions
 export default profileLinksSlice.reducer

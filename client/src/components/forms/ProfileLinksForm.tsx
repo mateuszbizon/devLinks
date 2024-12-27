@@ -11,10 +11,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import ProfileLinksEmpty from '../messages/ProfileLinksEmpty'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@/lib/store'
-import { addLink } from '@/lib/store/slices/profileLinksSlice'
+import { addLink, swapLinks } from '@/lib/store/slices/profileLinksSlice'
 import { PLATFORMS_LIST } from '@/constants/platformsList'
 import { generateRandomId } from '@/lib/utils/generateRandomId'
 import useUpdateUserLinks from '@/lib/hooks/services/userServices/useUpdateUserLinks'
+import { DndContext, DragEndEvent } from '@dnd-kit/core'
 
 type ProfileLinksFormProps = {
     profileLinks: ProfileLink[]
@@ -30,7 +31,7 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
         }
     })
 
-    const { fields, append, remove } = useFieldArray({
+    const { fields, append, remove, swap } = useFieldArray({
         control,
         name: "profileLinks",
         keyName: "fieldId"
@@ -48,6 +49,18 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
         append(newLink)
     }
 
+    function handleDragEnd(event: DragEndEvent) {
+        const { active, over } = event
+
+        if (over && active.id !== over.id) {
+            const fromIndex = fields.findIndex(link => link.id === active.id)
+            const toIndex = fields.findIndex(link => link.id === over.id)
+
+            dispatch(swapLinks({ fromIndex, toIndex }))
+            swap(fromIndex, toIndex)
+        }
+    }
+
     useEffect(() => {
         setValue("profileLinks", profileLinks)
     }, [profileLinks])
@@ -62,12 +75,14 @@ function ProfileLinksForm({ profileLinks }: ProfileLinksFormProps) {
             >
                 + Add new link
             </Button>
-            <ProfileLinksList
-                profileLinks={fields}
-                renderItem={(link, index) => (
-                    <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index} errors={errors} setValue={setValue} removeFieldArray={remove} />
-                )}
-            />
+            <DndContext onDragEnd={handleDragEnd}>
+                <ProfileLinksList
+                    profileLinks={fields}
+                    renderItem={(link, index) => (
+                        <ProfileLinkCard key={link.id} profileLink={link} linkIndex={index} errors={errors} setValue={setValue} removeFieldArray={remove} />
+                    )}
+                />
+            </DndContext>
             {!profileLinks.length && (
                 <ProfileLinksEmpty />
             )}
