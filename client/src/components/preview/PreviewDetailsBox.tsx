@@ -7,7 +7,7 @@ function PreviewDetailsBox({ children, className, ...props }: PreviewDetailsBoxP
   return (
     <div 
         {...props} 
-        className={cn('bg-white rounded-3xl md:px-14 md:py-12 mt-12 md:mt-24 max-w-[237px] md:max-w-[349px] mx-auto', className)}
+        className={cn('bg-white rounded-3xl md:px-14 md:py-12 mt-12 md:mt-24 max-w-[237px] md:max-w-[349px] mx-auto shadow-main', className)}
     >
         {children}
     </div>

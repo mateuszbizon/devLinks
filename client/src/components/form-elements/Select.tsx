@@ -50,7 +50,7 @@ function Select({ value, onChangeValue, children }: SelectProps) {
 			value={{ selectedValue: value, onChangeValue, closeSelect, selectOpen }}>
 			<div ref={selectRef} className='relative'>
 				<button
-					className='flex justify-between items-center w-full bg-white rounded-md border border-borders p-4 outline-none focus-visible:border-purple'
+					className={`flex justify-between items-center w-full bg-white rounded-md border border-borders p-4 outline-none focus-visible:border-purple focus-visible:shadow-active ${selectOpen && "border-purple shadow-active"}`}
 					onClick={() => setSelectOpen(prev => !prev)}
 					type="button"
 				>

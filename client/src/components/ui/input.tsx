@@ -21,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 							error ? "border-red" : "border-borders"
 						} bg-white ${
 							icon ? "pl-8" : "pl-4"
-						} pr-4 py-3 text-base text-grey-dark transition-colors placeholder:text-grey/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-purple disabled:cursor-not-allowed disabled:opacity-50`,
+						} pr-4 py-3 text-base text-grey-dark transition-colors placeholder:text-grey/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-purple focus-visible:shadow-active disabled:cursor-not-allowed disabled:opacity-50`,
 						className
 					)}
 					ref={ref}
