@@ -69,11 +69,13 @@ function ProfileSummaryName({ className, ...props }: ProfileSummaryNameProps) {
     )
 }
 
-function ProfileSummaryEmail() {
+type ProfileSummaryEmailProps = React.HTMLAttributes<HTMLSpanElement>
+
+function ProfileSummaryEmail({ className, ...props }: ProfileSummaryEmailProps) {
     const context = useProfileSummaryContext()
 
     return (
-        <span className='text-sm text-grey'>
+        <span className={cn('text-sm text-grey', className)} {...props}>
             {context.profileDetails.email}
         </span>
     )

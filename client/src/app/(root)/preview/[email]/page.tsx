@@ -30,7 +30,7 @@ function PreviewWithEmailPage() {
                         )}
                         <ProfileSummary.Box>
                             <ProfileSummary.Name className='text-3xl' />
-                            <ProfileSummary.Email />
+                            <ProfileSummary.Email className='text-base' />
                         </ProfileSummary.Box>
                         <ProfileSummary.Links>
                             <ProfileLinksList 
