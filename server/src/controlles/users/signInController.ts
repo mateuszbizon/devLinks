@@ -44,8 +44,8 @@ export async function signInController(req: Request<{}, {}, SignInSchema>, res: 
 
         res.cookie(TOKEN, refreshToken, {
             httpOnly: true,
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-            secure: process.env.NODE_ENV === 'production',  
+            sameSite: 'none',
+            secure: true,  
         })
 
         res.status(200).json({
