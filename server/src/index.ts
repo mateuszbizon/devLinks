@@ -16,6 +16,7 @@ app.use(bodyParser.json())
 app.use(cors({
     origin: ["http://localhost:3000", "https://dev-links-nu-sandy.vercel.app"],
     credentials: true,
+    optionsSuccessStatus: 200
 }))
 app.use(cookieParser())
 app.set("trust proxy", 1)
