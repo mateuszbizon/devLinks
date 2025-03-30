@@ -19,7 +19,7 @@ app.use(cors({
     optionsSuccessStatus: 200
 }))
 app.use(cookieParser())
-// app.set("trust proxy", 1)
+app.set("trust proxy", 1)
 
 app.use("/users", userRoutes)
 app.use("/auth", authRoutes)
