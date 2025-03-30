@@ -45,7 +45,8 @@ export async function signInController(req: Request<{}, {}, SignInSchema>, res: 
         res.cookie(TOKEN, refreshToken, {
             httpOnly: true,
             sameSite: 'none',
-            secure: true,  
+            secure: true,
+            domain: ".vercel.app"  
         })
 
         res.status(200).json({
